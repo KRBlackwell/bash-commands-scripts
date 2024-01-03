@@ -19,13 +19,13 @@ svn changelist blah A.py B.py C.py D.py E.py
 svn commit --changelist blah -m "Global header change discussed in meeting on 11/01/23. issues 65, 23"
 
 
-#To look for changes in the repository on a date or between two dates.
+#To look for changes in the repository on a date or between two dates. Verbose lists the file committed.
 
-svn log $SVN -r {2021-02-14}
+svn log $SVN --verbose -r {2021-02-14}
 
 
-#The following will not show 2/13 or 2/15, only what's in-between.
-svn log $SVN -r {2021-02-13}:{2021-02-15}
+#The following will not show 2/13 or 2/15, only what's in-between. Verbose lists the file committed.
+svn log $SVN --verbose -r {2021-02-13}:{2021-02-15}
 
 
 #I can't stand the constant ding when I type in the terminal.
