@@ -1,26 +1,27 @@
 #!/bin/bash
-#Find files that are a year old or more and 1gig in size or more.
 
+#find files not owned by the right group
+find . -printf "%u:%g %p\n" | grep -v my_good_group
+#or grep -v superuser when they need to be the one who owns files
+
+#Find files that are a year old or more and 1gig in size or more.
 find /my/user/path -mtime +365 -size +1G -exec ls -l {} +
 
 
 #Compare all files in two directories with each other.
 #This will tell you if all files in the directories are the same or not.
 #The output will dump to a text file.
-
 cd a_directory
 diff -qr /subdir /other_subdir > compare_files_in_dirs.txt
 
 
 #SVN
 #To commit multiple files at once with the same message
-
 svn changelist blah A.py B.py C.py D.py E.py
 svn commit --changelist blah -m "Global header change discussed in meeting on 11/01/23. issues 65, 23"
 
 
 #To look for changes in the repository on a date or between two dates. Verbose lists the file committed.
-
 svn log $SVN --verbose -r {2021-02-14}
 
 
@@ -47,7 +48,6 @@ ls -ahtlr /tmp | grep my_username
 #          it won't print every single one out
 #     2>/dev/null will output errors or permission denied to trash
 #     sort -hr will display largest first
-
 du -h /my/personal/directory --max-depth=1 2>/dev/null | sort -hr
 
 
